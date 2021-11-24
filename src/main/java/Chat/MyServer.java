@@ -13,7 +13,7 @@ public class MyServer {
     private AuthService authService;
     public MyServer() {
         try (ServerSocket server = new ServerSocket(ChatConstants.PORT)) {
-            authService = new BaseAuthService();
+            authService = new SQLiteDBAuthService();
             authService.start();
             clients = new ArrayList<>();
             while (true) {

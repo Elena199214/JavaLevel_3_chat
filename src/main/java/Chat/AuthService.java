@@ -1,6 +1,7 @@
 package Chat;
 
 
+import java.sql.SQLException;
 import java.util.Optional;
 
 /**
@@ -11,7 +12,7 @@ public interface AuthService {
     /**
      * запустить сервис
      */
-    void start();
+    void start() throws SQLException;
 
     /**
      * Остановить сервис
