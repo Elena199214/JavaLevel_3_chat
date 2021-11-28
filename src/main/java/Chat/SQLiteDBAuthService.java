@@ -78,13 +78,14 @@ public class SQLiteDBAuthService implements AuthService {
         }
     }
 
-
-    // получить ник пользователя
     @Override
     public Optional<String> getNickByLoginAndPass(String login, String pass) {
         return Optional.empty();
     }
+
 }
+    // получить ник пользователя
+
 
 
 
