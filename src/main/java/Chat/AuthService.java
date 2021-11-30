@@ -1,3 +1,4 @@
+
 package Chat;
 
 
@@ -24,5 +25,26 @@ public interface AuthService {
      * Получить никнейм
      * @return
      */
-    Optional<String> getNickByLoginAndPass(String login, String pass);
+    // Optional<String> getNickByLoginAndPass(String login, String pass);
+
+    String getNickByLoginPass(String login, String pass);
+
+    /**
+     * Проверить что ник есть в базе - false
+     * @param nick
+     * @return
+     */
+    default boolean isNickFree(String nick) {
+        return true;
+    }
+
+
+    /**
+     * Проверить что ник есть в базе - false
+     * @param newNick
+     * @param nick
+     */
+    default void updateNick(String newNick, String nick) {
+
+    }
 }

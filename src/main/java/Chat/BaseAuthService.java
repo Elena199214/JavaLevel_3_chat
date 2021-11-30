@@ -40,14 +40,18 @@ public class BaseAuthService implements AuthService {
     }
 
     @Override
-    public Optional<String> getNickByLoginAndPass (String login, String pass){
-        return entries.stream()
-                .filter(entry -> entry.login.equals(login) && entry.pass.equals(pass))
-                .map(entry -> entry.nick)
-                .findFirst();
+//    public Optional<String> getNickByLoginAndPass (String login, String pass){
+//        return entries.stream()
+//                .filter(entry -> entry.login.equals(login) && entry.pass.equals(pass))
+//                .map(entry -> entry.nick)
+//                .findFirst();
+//    }
+//}
+
+    public String getNickByLoginPass(String login, String pass) {
+        for (Entry entry : entries) {
+            if (entry.login.equals(login) && entry.pass.equals(pass)) return entry.nick;
+        }
+        return null;
     }
 }
-
-
-
-
