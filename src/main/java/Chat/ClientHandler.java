@@ -89,12 +89,12 @@ public class ClientHandler {
             String message = inputStream.readUTF();
             if (message.startsWith(ChatConstants.AUTH_COMMAND)) {
                 String[] parts = message.split("\\s+");
-                Optional<String> nick = server.getAuthService().getNickByLoginAndPass(parts[1], parts[2]);
-                if (nick.isPresent()) {
+                String nick = server.getAuthService().getNickByLoginPass(parts[1], parts[2]);
+                if (nick!= null) {
                     //проверим, что такого нет
-                    if (!server.isNickBusy(nick.get())) {
+                    if (!server.isNickBusy(nick)) {
                         sendMsg(ChatConstants.AUTH_OK + " " + nick);
-                        name = nick.get();
+                        name = nick;
                         server.subscribe(this);// добавить пользователя в сервис обмена сообщениями
                         server.broadcastMessage(name + " вошел в чат");
                         isAuth = true;
