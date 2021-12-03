@@ -2,6 +2,7 @@ package Chat;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,7 +14,7 @@ public class MyServer {
     private AuthService authService;
     public MyServer() {
         try (ServerSocket server = new ServerSocket(ChatConstants.PORT)) {
-            authService = new BaseAuthService();
+            authService = new SQLiteDBAuthService();
             authService.start();
             clients = new ArrayList<>();
             while (true) {
@@ -22,7 +23,7 @@ public class MyServer {
                 System.out.println("Клиент подключился");
                 new ClientHandler(this, socket);
             }
-        } catch (IOException e) {
+        } catch (IOException | SQLException e) {
             e.printStackTrace();
         } finally {
             if (authService != null) {
